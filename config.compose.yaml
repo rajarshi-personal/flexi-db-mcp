@@ -1,0 +1,10 @@
+# Local disposable integration environment. These accounts have elevated privileges.
+databases:
+  postgres:
+    url: postgresql+psycopg://dbmcp:local-dev-only@127.0.0.1:5432/app
+    read_only: true
+  mongo:
+    kind: mongodb
+    url: mongodb://dbmcp:local-dev-only@127.0.0.1:27017/?authSource=admin
+    database: app
+    read_only: true

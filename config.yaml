@@ -1,0 +1,15 @@
+# Working local default; run python scripts/seed_demo.py first.
+databases:
+  demo:
+    kind: sql
+    url: sqlite:///demo.db
+    read_only: true
+limits:
+  max_rows: 500
+  max_response_bytes: 1000000
+  timeout_seconds: 30
+  max_concurrency: 8
+llm:
+  enabled: false
+  base_url: http://127.0.0.1:11434/v1
+  model: qwen2.5-coder:7b

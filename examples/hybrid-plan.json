@@ -1,0 +1,12 @@
+{
+  "plan": {
+    "sources": [
+      {"name": "orders", "database": "reporting", "operation": "query_sql", "sql": "SELECT customer_id, SUM(total) AS total FROM orders GROUP BY customer_id"},
+      {"name": "customers", "database": "mongo", "operation": "find_documents", "collection": "customers", "projection": {"_id": 0, "customer_id": 1, "region": 1}}
+    ],
+    "joins": [{"source": "customers", "left": "orders.customer_id", "right": "customers.customer_id", "how": "left"}],
+    "group_by": ["customers.region"],
+    "metrics": [{"name": "sales", "operation": "sum", "field": "orders.total"}, {"name": "customer_count", "operation": "count"}],
+    "limit": 100
+  }
+}

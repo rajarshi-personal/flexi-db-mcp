@@ -1,0 +1,42 @@
+# Copy to config.local.yaml and remove aliases you do not use.
+# Environment expansion happens after YAML parsing, so secret punctuation is safe.
+databases:
+  postgres:
+    url: ${POSTGRES_URL}
+    read_only: true
+    connect_args:
+      connect_timeout: 10
+  mysql:
+    url: ${MYSQL_URL}
+    read_only: true
+    connect_args:
+      connect_timeout: 10
+      read_timeout: 30
+      write_timeout: 30
+  oracle:
+    url: ${ORACLE_URL}
+    read_only: true
+  sqlserver:
+    url: ${SQLSERVER_URL}
+    read_only: true
+    connect_args:
+      timeout: 10
+  mongo:
+    kind: mongodb
+    url: ${MONGODB_URL}
+    database: app
+    read_only: true
+limits:
+  max_rows: 500
+  max_response_bytes: 1000000
+  max_sql_chars: 50000
+  timeout_seconds: 30
+  max_concurrency: 8
+  max_batch_statements: 20
+  max_hybrid_rows: 10000
+llm:
+  enabled: false
+  base_url: http://127.0.0.1:11434/v1
+  model: qwen2.5-coder:7b
+  api_key: ""
+  timeout_seconds: 60
